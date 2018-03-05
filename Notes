@@ -1,0 +1,2 @@
+// static methods cannot be accesed using objects unlike Java
+// composer.lock makes sure that the same versions are used by other developers & thinks donk break ;)

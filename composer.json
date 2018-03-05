@@ -1,0 +1,13 @@
+{
+    "name": "bhartiya/mvc",
+    "description": "MVC project",
+    "authors": [
+        {
+            "name": "Harsh Kumar Bhartiya",
+            "email": "ilikegamess@gmail.com"
+        }
+    ],
+    "require": {
+    	"torophp/torophp": "dev-master"
+    }
+}
