@@ -1,5 +1,6 @@
 <?php 
 require '../vendor/autoload.php';
 Toro::serve(array(
-"/"=>"\Controller\Homecontroller",
+	"/" => "\Controller\Homecontroller",
+	"/link/:number" => "\Controller\LinkController"
 ));

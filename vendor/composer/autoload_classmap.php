@@ -7,5 +7,9 @@ $baseDir = dirname($vendorDir);
 
 return array(
     'Controller\\Homecontroller' => $baseDir . '/app/controllers/home_controller.php',
+    'Controller\\LinkController' => $baseDir . '/app/controllers/link_controller.php',
+    'DB' => $baseDir . '/app/models/db.php',
+    'Model\\CommentsModel' => $baseDir . '/app/models/comments_model.php',
+    'Model\\LinkModel' => $baseDir . '/app/models/link_model.php',
     'View\\Loader' => $baseDir . '/app/views/loader.php',
 );
