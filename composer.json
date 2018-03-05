@@ -8,6 +8,10 @@
         }
     ],
     "require": {
-    	"torophp/torophp": "dev-master"
+    	"torophp/torophp": "dev-master",
+        "twig/twig": "~2.0"
+    },
+    "autoload": {
+        "classmap": ["app"]
     }
 }

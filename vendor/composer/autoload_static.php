@@ -7,12 +7,54 @@ namespace Composer\Autoload;
 class ComposerStaticInit56b246ed0aefb0e14f5a977dcc1c7a28
 {
     public static $files = array (
+        '0e6d7bf4a5811bfa5cf40c5ccd6fae6a' => __DIR__ . '/..' . '/symfony/polyfill-mbstring/bootstrap.php',
         '65262669306b9cfaa9401133253e43a1' => __DIR__ . '/..' . '/torophp/torophp/src/Toro.php',
+    );
+
+    public static $prefixLengthsPsr4 = array (
+        'T' => 
+        array (
+            'Twig\\' => 5,
+        ),
+        'S' => 
+        array (
+            'Symfony\\Polyfill\\Mbstring\\' => 26,
+        ),
+    );
+
+    public static $prefixDirsPsr4 = array (
+        'Twig\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/twig/twig/src',
+        ),
+        'Symfony\\Polyfill\\Mbstring\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/symfony/polyfill-mbstring',
+        ),
+    );
+
+    public static $prefixesPsr0 = array (
+        'T' => 
+        array (
+            'Twig_' => 
+            array (
+                0 => __DIR__ . '/..' . '/twig/twig/lib',
+            ),
+        ),
+    );
+
+    public static $classMap = array (
+        'Controller\\Homecontroller' => __DIR__ . '/../..' . '/app/controllers/home_controller.php',
+        'View\\Loader' => __DIR__ . '/../..' . '/app/views/loader.php',
     );
 
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
+            $loader->prefixLengthsPsr4 = ComposerStaticInit56b246ed0aefb0e14f5a977dcc1c7a28::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInit56b246ed0aefb0e14f5a977dcc1c7a28::$prefixDirsPsr4;
+            $loader->prefixesPsr0 = ComposerStaticInit56b246ed0aefb0e14f5a977dcc1c7a28::$prefixesPsr0;
+            $loader->classMap = ComposerStaticInit56b246ed0aefb0e14f5a977dcc1c7a28::$classMap;
 
         }, null, ClassLoader::class);
     }

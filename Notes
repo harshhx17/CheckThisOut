@@ -1,2 +1,4 @@
 // static methods cannot be accesed using objects unlike Java
 // composer.lock makes sure that the same versions are used by other developers & thinks donk break ;)
+// Since namespaces can be nested it is better to use \ before the namespace :Bounced huun??
+// Use composer dump-autoload when you make any changes  to the files that have been imported or to composer.json
