@@ -6,14 +6,14 @@ class LoginController
 	{
 		session_start();
 		if($_SESSION['id'])
-			header('Location: /profile');
+			header('Location: /');
 		echo \View\Loader::make()->render('templates/login.twig', array());
 	}
 	public function post()
 	{
 		session_start();
 		if($_SESSION['id'])
-			header('Location: profile');
+			header('Location: /');
 		$id = 2;
 	 	$username = $_POST['username'];
 	 	$password = $_POST['password'];
@@ -26,7 +26,7 @@ class LoginController
 	 	{
 	 		$_SESSION["id"] = $result['id'];
 	 		// var_dump($result);
-	 		header("Location: /profile");
+	 		header("Location: /");
 	 	}
 	}
 }
