@@ -9,7 +9,7 @@ class ProfileController
 			header('Location: /login');
 		$id = $_SESSION['id'];
 
-		$links = \Model\LinkModel::all();
+		$links = \Model\LinkModel::userlinks($id);
 		$user = \Model\UserModel::find($id);
 		echo \View\Loader::make()->render('templates\profile.twig',array('links'=> $links,'user' => $user));
 	}
@@ -28,9 +28,9 @@ class ProfileController
 		$url = $_POST['url'];
 		$username = $user['username'];
 
-		\Model\LinkModel::insert($title, $url, $username);
+		\Model\LinkModel::insert($title, $url, $_SESSION['id']);
 
-		$links = \Model\LinkModel::all();
+		$links = \Model\LinkModel::userlinks($id);
 
 		echo \View\Loader::make()->render('templates\profile.twig',
 		array('links'=> $links,'user' => $user));

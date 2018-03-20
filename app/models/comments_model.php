@@ -13,11 +13,11 @@ class CommentsModel
 		$row = $stmt->fetchAll();
 		return $row;
 	}
-	public static function insert($link_id, $content)
+	public static function insert($link_id, $content, $uid)
 	{
 		$db = \DB::get_instance();
-		$stmt = $db->prepare("INSERT INTO comments (link_id, content) VALUES (?, ?)");
-		$stmt->execute([$link_id, $content]);
+		$stmt = $db->prepare("INSERT INTO comments (link_id, content, uid) VALUES (?, ?, ?)");
+		$stmt->execute([$link_id, $content, $uid]);
 		$stmt = null;//Bas kardo yaar ;)
 	}
 }
