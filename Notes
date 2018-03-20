@@ -8,3 +8,5 @@ tail -f /var/log/apache2/error.log //might want to use sudo
 //there is also a file named access.log in this directory
 //twig syntax to access a variable:
 {{v1}}
+sudo prime-select intel
+sudo prime-select nvidia

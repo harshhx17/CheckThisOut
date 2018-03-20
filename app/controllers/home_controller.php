@@ -3,15 +3,17 @@ namespace Controller;
 class Homecontroller
 {
 	public function get(){
-		$links = \Model\LinkModel::all();
-
+		session_start();
+		if($_SESSION['id'])
+			header('Location: /profile');
 		echo \View\Loader::make()->render('templates/home.twig',
 		array('links' => $links));
 
 	}
 	public function post(){
-		//create new model and save it in db
-		
+		session_start();
+		if($_SESSION['id'])
+			header('Location: /profile');
 		$title = $_POST['title'];
 		$url = $_POST['url'];
 		$username = $_POST['username'];

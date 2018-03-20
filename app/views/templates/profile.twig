@@ -1,13 +1,14 @@
+<p>"Hello {{user['username']}}"</p>
+<form method="post">
+	<input type="submit" name="logout" value="Log Out">
+</form>
 <form method="post">
 <pre>
 Title:    <input name="title" type="text"><br>
 URL:      <input type="text" name="url"><br>
-USERNAME: <input type="text" name="username"><br>
 <input type="submit" name="submit">
 </pre>
 </form>
-<a href="/login"><BUTTON>Login</BUTTON></a>
-<a href="/signup"><button>Sign Up</button></a>
 {%for link in links%}
 	<div><a href="{{link.url}}"><h3>{{link.title}}</h3></a>
 	<a href="link/{{ link.id }}">Comments</a>
