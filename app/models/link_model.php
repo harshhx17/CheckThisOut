@@ -10,6 +10,36 @@ class LinkModel
 		$row = $stmt->fetch();
 		return $row["vote"];
 	}
+	public static function trendinglinks()
+	{
+		$db = \DB::get_instance();
+
+		$stmt = $db->prepare("SELECT * FROM links");
+		$stmt->execute();
+		$rows = $stmt->fetchAll();
+		$links = [];
+		$obj = new \DateTime();
+		$time = $obj->getTimestamp();
+		//gets current time
+		var_dump($time);
+		$counter =0;
+		foreach ($rows as $row) {
+			$obj2 = new \DateTime($row["time"]);
+			//gets the time of the row in same format as the time in $time
+			var_dump($obj2->getTimestamp());
+			$posttime = $obj2->getTimestamp();
+			$timediff = $time-$posttime;
+			if( $timediff < 2*24*60*60)
+				// Taking the entries within 2 days from current time..
+			{
+				$links["$counter"] = $row;
+				$links["$counter"]["rate"] = $row["vote"]/$timediff;
+				//making a rating on the basis of votes per unit time..
+			}
+			var_dump($links);
+		}
+		return $rows;
+	}
 	public static function toplinks()
 	{
 		$db = \DB::get_instance();

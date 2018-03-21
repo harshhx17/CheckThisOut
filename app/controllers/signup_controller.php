@@ -16,7 +16,7 @@ class SignupController
 		if($result === 1){
 			$user = \Model\UserModel::get_id($username,$password);
 			$_SESSION['id'] = $user['id'];
-			header('Location: profile');
+			header('Location: /');
 		}
 		else if($result === 0){
 		echo \View\Loader::make()->render('templates\signup.twig',array('message'=>"That username exists, Please try a new one ;)"));
