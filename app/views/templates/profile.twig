@@ -1,3 +1,4 @@
+<link rel="stylesheet" href="/css/votes.css">
 <p>"Hello {{user['username']}}    Your Karma: {{user['karma']}}"</p>
 <form method="post">
 	<input type="submit" name="logout" value="Log Out">
@@ -15,8 +16,17 @@ URL:      <input type="text" name="url"><br>
 {%for link in links%}
 	<div><a href="{{link.url}}"><h3>{{link.title}}</h3></a>
 	<form method="POST">
-		{{link.vote}}<input type="submit" name="upvote{{link.id}}" value="upvote">
-		<input type="submit" name="downvote{{link.id}}" value="downvote">	
+		{{link.vote}}
+		{% if link.voted == "1" %}
+			<input type="submit" class="upvoted" name="upvote{{link.id}}" value="upvote">
+			<input type="submit" name="downvote{{link.id}}" value="downvote">
+		{% elseif link.voted == "-1" %}
+			<input type="submit" name="upvote{{link.id}}" value="upvote">
+			<input type="submit" class="downvoted" name="downvote{{link.id}}" value="downvote">
+		{% else %}
+			<input type="submit" name="upvote{{link.id}}" value="upvote">
+			<input type="submit" name="downvote{{link.id}}" value="downvote">
+		{% endif %}	
 		<a href="link/{{ link.id }}">Comments</a>
 	</form>
 {%endfor%}

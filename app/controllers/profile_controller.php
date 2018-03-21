@@ -12,6 +12,9 @@ class ProfileController
 		$links = \Model\LinkModel::userlinks($id);
 		$comments = \Model\CommentsModel::usercomments($id);
 		$user = \Model\UserModel::find($id);
+		for ($counter=0; !empty($links["$counter"]) ; $counter++) { 
+			$links["$counter"]["voted"] = \Model\LinkModel::check($id, $links["$counter"]['id']);
+		}
 		echo \View\Loader::make()->render('templates\profile.twig',array('links'=> $links,'user' => $user, 'comments' => $comments));
 	}
 	function post()
@@ -46,9 +49,11 @@ class ProfileController
 				\Model\LinkModel::vote($link['uid'], $link['id'], '-1', $link['uid']);
 			}
 		}
-		
 		$links = \Model\LinkModel::userlinks($id);
 		$comments = \Model\CommentsModel::usercomments($id);
+		for ($counter=0; !empty($links["$counter"]) ; $counter++) { 
+			$links["$counter"]["voted"] = \Model\LinkModel::check($id, $links["$counter"]['id']);
+		}
 		echo \View\Loader::make()->render('templates\profile.twig',
 		array('links'=> $links,'user' => $user, 'comments' => $comments));
 	}

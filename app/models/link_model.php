@@ -2,6 +2,14 @@
 namespace Model;
 class LinkModel
 {
+	public static function check($uid, $pid)
+	{
+		$db = \DB::get_instance();
+		$stmt = $db->prepare("SELECT * FROM postvote WHERE uid=? and pid=? LIMIT 1");
+		$stmt->execute([$uid, $pid]);
+		$row = $stmt->fetch();
+		return $row["vote"];
+	}
 	public static function toplinks()
 	{
 		$db = \DB::get_instance();

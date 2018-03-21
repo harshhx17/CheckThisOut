@@ -24,7 +24,6 @@ class LoginController
 	 	else
 	 	{
 	 		$_SESSION["id"] = $result['id'];
-	 		// var_dump($result);
 	 		header("Location: /");
 	 	}
 	}

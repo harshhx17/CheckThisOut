@@ -12,6 +12,9 @@ class LinkController
 		$link = \Model\LinkModel::find($slug);
 		$user = \Model\UserModel::find($uid);
 		$username = $user['username'];
+		for ($counter=0; !empty($comments["$counter"]) ; $counter++) { 
+			$comments["$counter"]["voted"] = \Model\CommentsModel::check($uid,$comments["$counter"]['id']);
+		}
 		echo \View\Loader::make()->render('templates/link.twig',
 		array('link' => $link, 'comments' => $comments));
 	}
@@ -55,10 +58,8 @@ class LinkController
 			$comments = \Model\CommentsModel::order_time($slug);
 		}
 		for ($counter=0; !empty($comments["$counter"]) ; $counter++) { 
-			var_dump($counter);
-			$comments["$counter"]["voted"] = 1;
+			$comments["$counter"]["voted"] = \Model\CommentsModel::check($uid,$comments["$counter"]['id']);
 		}
-		var_dump($comments);
 		echo \View\Loader::make()->render('templates/link.twig',
 		array('link' => $link, 'comments' => $comments));
 	}

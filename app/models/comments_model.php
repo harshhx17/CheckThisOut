@@ -2,6 +2,14 @@
 namespace Model;
 class CommentsModel
 {
+	public static function check($uid, $cid)
+	{
+		$db = \DB::get_instance();
+		$stmt = $db->prepare("SELECT * FROM commentvote WHERE uid=? and cid=? LIMIT 1");
+		$stmt->execute([$uid, $cid]);
+		$row = $stmt->fetch();
+		return $row["vote"];
+	}
 	public static function usercomments($uid)//might want to specify the order(time or votes)
 	{
 		$db = \DB::get_instance();

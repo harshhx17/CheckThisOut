@@ -16,6 +16,9 @@ class PostController
 		{
 			$links = \Model\LinkModel::toplinks();
 		}
+		for ($counter=0; !empty($links["$counter"]) ; $counter++) { 
+			$links["$counter"]["voted"] = \Model\LinkModel::check($id, $links["$counter"]['id']);
+		}
 		echo \View\Loader::make()->render('templates\post.twig',array('links'=> $links));
 	}
 	function post($type)
@@ -50,6 +53,9 @@ class PostController
 		else if($type === "top")
 		{
 			$links = \Model\LinkModel::toplinks();
+		}
+		for ($counter=0; !empty($links["$counter"]) ; $counter++) { 
+			$links["$counter"]["voted"] = \Model\LinkModel::check($id, $links["$counter"]['id']);
 		}
 		echo \View\Loader::make()->render('templates\post.twig',array('links'=> $links));
 
