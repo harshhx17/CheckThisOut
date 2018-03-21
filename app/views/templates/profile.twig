@@ -1,7 +1,9 @@
-<p>"Hello {{user['username']}}"</p>
+<p>"Hello {{user['username']}}    Your Karma: {{user['karma']}}"</p>
 <form method="post">
 	<input type="submit" name="logout" value="Log Out">
 </form>
+<a href="/posts/recent"><button>Recent Posts</button></a>
+<a href="/posts/top"><button>All Time Top</button></a>
 <form method="post">
 <pre>
 Title:    <input name="title" type="text"><br>
@@ -12,5 +14,15 @@ URL:      <input type="text" name="url"><br>
 <h3>My Posts</h3>
 {%for link in links%}
 	<div><a href="{{link.url}}"><h3>{{link.title}}</h3></a>
-	<a href="link/{{ link.id }}">Comments</a>
+	<form method="POST">
+		{{link.vote}}<input type="submit" name="upvote{{link.id}}" value="upvote">
+		<input type="submit" name="downvote{{link.id}}" value="downvote">	
+		<a href="link/{{ link.id }}">Comments</a>
+	</form>
 {%endfor%}
+
+<h3>My Comments</h3>
+{% for comment in comments %}
+	<div>{{comment.content}}</div>
+	<hr>
+{% endfor %}

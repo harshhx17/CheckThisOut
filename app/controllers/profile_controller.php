@@ -10,8 +10,9 @@ class ProfileController
 		$id = $_SESSION['id'];
 
 		$links = \Model\LinkModel::userlinks($id);
+		$comments = \Model\CommentsModel::usercomments($id);
 		$user = \Model\UserModel::find($id);
-		echo \View\Loader::make()->render('templates\profile.twig',array('links'=> $links,'user' => $user));
+		echo \View\Loader::make()->render('templates\profile.twig',array('links'=> $links,'user' => $user, 'comments' => $comments));
 	}
 	function post()
 	{
@@ -24,15 +25,31 @@ class ProfileController
 			header('Location: login');
 		}
 		$user = \Model\UserModel::find($id);// Think of a way in which the one called in the get function can itself be used instead of making a query.
-		$title = $_POST['title'];
-		$url = $_POST['url'];
-		$username = $user['username'];
-
-		\Model\LinkModel::insert($title, $url, $_SESSION['id']);
+		if(isset($_POST['submit'])){
+			$title = $_POST['title'];
+			$url = $_POST['url'];
+			$username = $user['username'];
+			\Model\LinkModel::insert($title, $url, $id, $username);
+		}
 
 		$links = \Model\LinkModel::userlinks($id);
-
+		$comments = \Model\CommentsModel::usercomments($id);
+		foreach ($links as $link) {
+			$upname = "upvote" . "$link[id]";
+			$downname = "downvote" . "$link[id]";
+			if(isset($_POST["$upname"]))
+			{
+				\Model\LinkModel::vote($link['uid'], $link['id'], '1', $link['uid']);
+			}
+			else if(isset($_POST["$downname"]))
+			{
+				\Model\LinkModel::vote($link['uid'], $link['id'], '-1', $link['uid']);
+			}
+		}
+		
+		$links = \Model\LinkModel::userlinks($id);
+		$comments = \Model\CommentsModel::usercomments($id);
 		echo \View\Loader::make()->render('templates\profile.twig',
-		array('links'=> $links,'user' => $user));
+		array('links'=> $links,'user' => $user, 'comments' => $comments));
 	}
 }

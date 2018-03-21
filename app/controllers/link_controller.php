@@ -8,25 +8,58 @@ class LinkController
 		if(!$_SESSION['id'])
 			header('Location: /login');
 		$uid = $_SESSION['id'];
-		$comments = \Model\CommentsModel::find($slug);
+		$comments = \Model\CommentsModel::order_time($slug);
 		$link = \Model\LinkModel::find($slug);
 		$user = \Model\UserModel::find($uid);
 		$username = $user['username'];
 		echo \View\Loader::make()->render('templates/link.twig',
-		array('link' => $link, 'comments' => $comments, 'username' => $username));
+		array('link' => $link, 'comments' => $comments));
 	}
 	function post($slug){
 		session_start();
 		if(!$_SESSION['id'])
 			header('Location: /login');
-		$comment = $_POST['comment'];
 		$uid = $_SESSION['id'];
-		\Model\CommentsModel::insert($slug, $comment, $uid);
-		$comments = \Model\CommentsModel::find($slug);
 		$link = \Model\LinkModel::find($slug);
 		$user = \Model\UserModel::find($uid);
 		$username = $user['username'];
+		if(isset($_POST['submit']))
+		{
+			$comment = $_POST['comment'];
+			\Model\CommentsModel::insert($slug, $comment, $uid, $username);
+		}
+		if(isset($_POST['vote'])){
+			$comments = \Model\CommentsModel::order_vote($slug);
+		}
+		else
+		{
+			$comments = \Model\CommentsModel::order_time($slug);
+		}
+		foreach ($comments as $comment) {
+			$upname = "upvote" . "$comment[id]";
+			$downname = "downvote" . "$comment[id]";
+			if(isset($_POST["$upname"]))
+			{
+				\Model\CommentsModel::vote($uid, $comment['id'], '1', $comment['uid']);
+			}
+			else if(isset($_POST["$downname"]))
+			{
+				\Model\CommentsModel::vote($uid, $comment['id'], '-1', $comment['uid']);
+			}
+		}
+		if(isset($_POST['vote'])){
+			$comments = \Model\CommentsModel::order_vote($slug);
+		}
+		else
+		{
+			$comments = \Model\CommentsModel::order_time($slug);
+		}
+		for ($counter=0; !empty($comments["$counter"]) ; $counter++) { 
+			var_dump($counter);
+			$comments["$counter"]["voted"] = 1;
+		}
+		var_dump($comments);
 		echo \View\Loader::make()->render('templates/link.twig',
-		array('link' => $link, 'comments' => $comments, 'username' => $username));
+		array('link' => $link, 'comments' => $comments));
 	}
 }

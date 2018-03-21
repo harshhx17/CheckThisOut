@@ -14,7 +14,6 @@ class LoginController
 		session_start();
 		if($_SESSION['id'])
 			header('Location: /');
-		$id = 2;
 	 	$username = $_POST['username'];
 	 	$password = $_POST['password'];
 	 	$result = \Model\UserModel::get_id($username,$password);

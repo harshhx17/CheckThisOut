@@ -2,6 +2,20 @@
 namespace Model;
 class UserModel
 {
+	public static function increment_karma($id)
+	{
+		$db = \DB::get_instance();
+		$stmt = $db->prepare("UPDATE users SET karma=karma+1 WHERE id=? LIMIT 1");
+		$stmt->execute([$id]);
+		$stmt = null;
+	}
+	public static function decrement_karma($id)
+	{
+		$db = \DB::get_instance();
+		$stmt = $db->prepare("UPDATE users SET karma=karma-1 WHERE id=? LIMIT 1");
+		$stmt->execute([$id]);
+		$stmt  = null;
+	}
 	public static function get_id($username, $password)
 	{
 		$db = \DB::get_instance();

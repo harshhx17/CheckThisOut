@@ -1,0 +1,10 @@
+<h1>Recent Posts</h1>
+<a href="/"><button>Home</button></a>
+{%for link in links%}
+	<div><a href="{{link.url}}"><h3>{{link.title}}</h3></a>
+	<form method="POST">
+		{{link.vote}}<input type="submit" name="upvote{{link.id}}" value="upvote">
+		<input type="submit" name="downvote{{link.id}}" value="downvote">	
+		<a href="/link/{{ link.id }}">Comments</a>
+	</form>
+{%endfor%}

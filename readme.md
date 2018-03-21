@@ -1,21 +1,7 @@
-"/" -> links, links add
-"/link/id" -> link,user,comments
-			  Should be able to add coments
-No Authentication
-
-
-DATABASE:
-MVC:
-
-
-Table 1: link 
-
-
-
-
-
-Table 2: comments
-
-
-
-
+A link sharing platform with following features
+1. User Authentication
+2. My Posts
+3. Recent Posts
+4. Comments
+5. Upvotes on posts
+6. Upvotes on comments
