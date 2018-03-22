@@ -4,13 +4,13 @@ max_line_length = 150
 files = **/*.php, **/*.twig
 use_spaces = False
 editor = subl
+bears = LineLengthBear
 
 [all.php]
 files = **/*.php
-bears = PHPLintBear, LineLengthBear
+bears += PHPLintBear
 language = php
 
 [all.html]
 files = **/*.twig
-bears = HTMLLintBear, LineLengthBear
 language = html
