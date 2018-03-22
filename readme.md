@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/harshhx17/CheckThisOut.svg?branch=master)](https://travis-ci.org/harshhx17/CheckThisOut)
+
 *Features*
 A link sharing platform with following features
 1. User Authentication
