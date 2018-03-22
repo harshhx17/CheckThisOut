@@ -1,5 +1,0 @@
-install:
-  - pip install coala
-  - pip install coala-bears
-script:
-  - coala --non-interactive -V
