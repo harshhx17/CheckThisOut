@@ -1,17 +1,28 @@
-<link rel="stylesheet" href="/css/votes.css">
-<p>"Hello {{user['username']}}    Your Karma: {{user['karma']}}"</p>  <!-- Ignore HTMLLintBear -->
-<form method="post">
-	<input type="submit" name="logout" value="Log Out">
+<!DOCTYPE html>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<nav class="navbar navbar-inverse">
+<div class="nav nav-header navbar-brand">"Hello {{user['username']}}    Your Karma: {{user['karma']}}"</div>  <!-- Ignore HTMLLintBear -->
+<form method="post" class="navbar-nav" style="float: right;">
+	<input class="navbar-brand btn btn-default" type="submit" name="logout" value="Log Out">
 </form>
-<a href="/posts/recent"><button>Recent Posts</button></a>
-<a href="/posts/top"><button>All Time Top</button></a>
-<a href="/posts/trending"><button>Trending</button></a>
+</nav>
+<nav class="navbar navbar-default">
+	<div class="navbar-header navbar-brand">POSTS</div>
+<ul class="nav navbar-nav">
+<li><a href="/posts/recent">Recent Posts</a></li>
+<li><a href="/posts/top">All Time Top</a></li>
+<li><a href="/posts/trending">Trending</a></li>
+</ul>
+</nav>
 <form method="post">
-<pre>
-Title:    <input name="title" type="text"><br>
-URL:      <input type="text" name="url"><br>
-<input type="submit" name="submit">
-</pre>
+<div class="container">
+	<h3>Share A link</h3>
+Title:    <input class="form-control" name="title" type="text"><br>
+URL:      <input class="form-control" type="text" name="url"><br>
+<input class="btn btn-default" type="submit" name="Share Link">
+</div>
 </form>
 <h3>My Posts</h3>
 {%for link in links%}
@@ -21,14 +32,14 @@ URL:      <input type="text" name="url"><br>
 	<form method="POST">
 		{{link.vote}}
 		{% if link.voted == "1" %}
-			<input type="submit" class="upvoted" name="upvote{{link.id}}" value="upvote">  <!-- Ignore HTMLLintBear -->
-			<input type="submit" name="downvote{{link.id}}" value="downvote">
+			<input type="submit" class="btn btn-primary active" name="upvote{{link.id}}" value="upvote">  <!-- Ignore HTMLLintBear -->
+			<input type="submit" class="btn btn-default" name="downvote{{link.id}}" value="downvote">
 		{% elseif link.voted == "-1" %}
-			<input type="submit" name="upvote{{link.id}}" value="upvote">
-			<input type="submit" class="downvoted" name="downvote{{link.id}}" value="downvote">
+			<input type="submit" class="btn btn-default" name="upvote{{link.id}}" value="upvote">
+			<input type="submit" class="btn btn-danger active" name="downvote{{link.id}}" value="downvote">
 		{% else %}
-			<input type="submit" name="upvote{{link.id}}" value="upvote">
-			<input type="submit" name="downvote{{link.id}}" value="downvote">
+			<input type="submit" class="btn btn-default" name="upvote{{link.id}}" value="upvote">
+			<input type="submit" class="btn btn-default" name="downvote{{link.id}}" value="downvote">
 		{% endif %}
 		<a href="link/{{ link.id }}">Comments</a>
 	</form>
