@@ -27,7 +27,7 @@ class ProfileController
 			session_destroy();
 			header('Location: login');
 		}
-		$user = \Model\UserModel::find($id);// Think of a way in which the one called in the get function can itself be used instead of making a query.
+		$user = \Model\UserModel::find($id);
 		if(isset($_POST['submit'])){
 			$title = $_POST['title'];
 			$url = $_POST['url'];

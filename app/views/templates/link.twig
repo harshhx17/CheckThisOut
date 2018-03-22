@@ -8,17 +8,17 @@
 </form>
 {% for comment in comments %}
 	<div>{{comment.content}}</div>
-	<span><h5>By: {{comment.username}}</h5></span>
+	<h5>By: {{comment.username}}</h5>
 	<form method="post">
 		{{comment.vote}}
 		{% if comment.voted == "1" %}
-			<input type="submit" class="upvoted" name="upvote{{comment.id}}" value="upvote" >
+			<input type="submit" class="upvoted" name="upvote{{comment.id}}" value="upvote">  <!-- Ignore HTMLLintBear -->
 			<input type="submit" name="downvote{{comment.id}}" value="downvote">
 		{% elseif comment.voted == "-1" %}
-			<input type="submit" name="upvote{{comment.id}}" value="upvote" >
+			<input type="submit" name="upvote{{comment.id}}" value="upvote">
 			<input type="submit" class="downvoted" name="downvote{{comment.id}}" value="downvote">
 		{% else %}
-			<input type="submit" name="upvote{{comment.id}}" value="upvote" >
+			<input type="submit" name="upvote{{comment.id}}" value="upvote">
 			<input type="submit" name="downvote{{comment.id}}" value="downvote">
 		{% endif %}
 	</form>

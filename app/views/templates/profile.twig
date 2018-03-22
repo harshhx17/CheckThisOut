@@ -1,5 +1,5 @@
 <link rel="stylesheet" href="/css/votes.css">
-<p>"Hello {{user['username']}}    Your Karma: {{user['karma']}}"</p>
+<p>"Hello {{user['username']}}    Your Karma: {{user['karma']}}"</p>  <!-- Ignore HTMLLintBear -->
 <form method="post">
 	<input type="submit" name="logout" value="Log Out">
 </form>
@@ -15,11 +15,13 @@ URL:      <input type="text" name="url"><br>
 </form>
 <h3>My Posts</h3>
 {%for link in links%}
-	<div><a href="{{link.url}}"><h3>{{link.title}}</h3></a>
+	<a href="{{link.url}}">
+		<h3>{{link.title}}</h3>
+	</a>
 	<form method="POST">
 		{{link.vote}}
 		{% if link.voted == "1" %}
-			<input type="submit" class="upvoted" name="upvote{{link.id}}" value="upvote">
+			<input type="submit" class="upvoted" name="upvote{{link.id}}" value="upvote">  <!-- Ignore HTMLLintBear -->
 			<input type="submit" name="downvote{{link.id}}" value="downvote">
 		{% elseif link.voted == "-1" %}
 			<input type="submit" name="upvote{{link.id}}" value="upvote">
@@ -27,7 +29,7 @@ URL:      <input type="text" name="url"><br>
 		{% else %}
 			<input type="submit" name="upvote{{link.id}}" value="upvote">
 			<input type="submit" name="downvote{{link.id}}" value="downvote">
-		{% endif %}	
+		{% endif %}
 		<a href="link/{{ link.id }}">Comments</a>
 	</form>
 {%endfor%}
