@@ -1,7 +1,17 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<div class="alert alert-primary">{{message}}</div>
 <form method="post">
-	Username:<input type="text" name="username">
-	Password:<input type="password" name="password">
-	<input type="submit" name="signup" value="Sign Up">
+	<div class="container">
+		<h3>Register</h3>
+	Username:<input class="form-control" type="text" name="username">
+	Password:<input class="form-control" type="password" name="password">
+	<input class="btn btn-default" type="submit" name="signup" value="Sign Up">
+	<br>
+
+Already have an Account!! <a href="login" class="btn btn-default">Log In</a>
+
+	</div>
 </form>
-Already have an Account!! <a href="login"><button>Log In</button></a>
-<div>{{message}}</div>
