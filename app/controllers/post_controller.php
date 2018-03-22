@@ -62,6 +62,10 @@ class PostController
 		{
 			$links = \Model\LinkModel::toplinks();
 		}
+		else if($type === "trending")
+		{
+			$links = \Model\LinkModel::trendinglinks();
+		}
 		for ($counter=0; !empty($links["$counter"]) ; $counter++) { 
 			$links["$counter"]["voted"] = \Model\LinkModel::check($id, $links["$counter"]['id']);
 		}
