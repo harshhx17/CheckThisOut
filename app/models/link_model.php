@@ -21,12 +21,10 @@ class LinkModel
 		$obj = new \DateTime();
 		$time = $obj->getTimestamp();
 		//gets current time
-		var_dump($time);
 		$counter =0;
 		foreach ($rows as $row) {
 			$obj2 = new \DateTime($row["time"]);
 			//gets the time of the row in same format as the time in $time
-			var_dump($obj2->getTimestamp());
 			$posttime = $obj2->getTimestamp();
 			$timediff = $time-$posttime;
 			if( $timediff < 2*24*60*60)
@@ -34,11 +32,16 @@ class LinkModel
 			{
 				$links["$counter"] = $row;
 				$links["$counter"]["rate"] = $row["vote"]/$timediff;
+				$counter++;
 				//making a rating on the basis of votes per unit time..
 			}
-			var_dump($links);
 		}
-		return $rows;
+		//sorting the given links array on the basis of rate of each of its links
+		foreach ($links as $key => $value) {
+			$rate["$key"] = $value["rate"];
+		}
+		array_multisort($rate, SORT_DESC, $links);//sorts $links in the same way $rate has been sorted using the same keys...
+		return $links;
 	}
 	public static function toplinks()
 	{
