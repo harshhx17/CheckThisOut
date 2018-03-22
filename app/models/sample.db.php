@@ -6,6 +6,8 @@ class DB
 	{
 		$username = '';
 		$password = '';
+		$host = '';
+		$dbname = '';
 		if(!self::$instance)
 		{
 			    self::$instance = new PDO("mysql:host=localhost;dbname=mvc", "$username", "$password");
