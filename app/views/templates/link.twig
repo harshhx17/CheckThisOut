@@ -17,7 +17,7 @@
 {% for comment in comments %}
 	
 	<blockquote class="container-fluid">{{comment.content}}
-	<footer>By: {{comment.username}}</footer>
+		<footer>By: {{comment.username}}</footer>
 	</blockquote>
 	<form method="post" class="container-fluid" class="form-control">
 		{{comment.vote}}
@@ -35,9 +35,9 @@
 	<hr>
 {% endfor %}
 <div class="container" class="col-lg-1">
-<form method="post">
-	<h3> Your Comment</h3>
-	<input class="form-control" type="text" name="comment">
-	<input class="btn btn-default" type="submit" name="submit" value="submit">
-</form>
+	<form method="post">
+		<h3> Your Comment</h3>
+		<input class="form-control" type="text" name="comment">
+		<input class="btn btn-default" type="submit" name="submit" value="submit">
+	</form>
 </div>

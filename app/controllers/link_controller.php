@@ -16,7 +16,7 @@ class LinkController
 			$comments["$counter"]["voted"] = \Model\CommentsModel::check($uid,$comments["$counter"]['id']);
 		}
 		echo \View\Loader::make()->render('templates/link.twig',
-		array('link' => $link, 'comments' => $comments));
+			array('link' => $link, 'comments' => $comments));
 	}
 	function post($slug){
 		session_start();
@@ -61,6 +61,6 @@ class LinkController
 			$comments["$counter"]["voted"] = \Model\CommentsModel::check($uid,$comments["$counter"]['id']);
 		}
 		echo \View\Loader::make()->render('templates/link.twig',
-		array('link' => $link, 'comments' => $comments));
+			array('link' => $link, 'comments' => $comments));
 	}
 }

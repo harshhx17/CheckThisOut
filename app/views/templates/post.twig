@@ -3,26 +3,26 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <nav class="navbar navbar-default"><h1 class="navbar-nav">Posts</h1>
-<a href="/" class="navbar-nav navbar-brand btn btn-default" style="float: right;">Home</a>
+	<a href="/" class="navbar-nav navbar-brand btn btn-default" style="float: right;">Home</a>
 </nav>
 {%for link in links%}
-	<blockquote class="container-fluid"><p><a href="{{link.url}}">
-		{{link.title}}
-	</a></p>
-	<footer>BY {{link.username}}</footer>
-   </blockquote>
-	<form method="POST">
-		{{link.vote}}
-		{% if link.voted == "1" %}
-			<input type="submit" class="btn btn-primary active" name="upvote{{link.id}}" value="upvote">  <!-- Ignore HTMLLintBear -->
-			<input type="submit" class="btn btn-default" name="downvote{{link.id}}" value="downvote">
-		{% elseif link.voted == "-1" %}
-			<input type="submit" class="btn btn-default" name="upvote{{link.id}}" value="upvote">
-			<input type="submit" class="btn btn-danger active" name="downvote{{link.id}}" value="downvote">
-		{% else %}
-			<input class="btn btn-default" type="submit" name="upvote{{link.id}}" value="upvote">
-			<input class="btn btn-default" type="submit" name="downvote{{link.id}}" value="downvote">
-		{% endif %}
-		<a href="/link/{{ link.id }}">Comments</a>
-	</form>
+<blockquote class="container-fluid"><p><a href="{{link.url}}">
+	{{link.title}}
+</a></p>
+<footer>BY {{link.username}}</footer>
+</blockquote>
+<form method="POST">
+	{{link.vote}}
+	{% if link.voted == "1" %}
+		<input type="submit" class="btn btn-primary active" name="upvote{{link.id}}" value="upvote">  <!-- Ignore HTMLLintBear -->
+		<input type="submit" class="btn btn-default" name="downvote{{link.id}}" value="downvote">
+	{% elseif link.voted == "-1" %}
+		<input type="submit" class="btn btn-default" name="upvote{{link.id}}" value="upvote">
+		<input type="submit" class="btn btn-danger active" name="downvote{{link.id}}" value="downvote">
+	{% else %}
+		<input class="btn btn-default" type="submit" name="upvote{{link.id}}" value="upvote">
+		<input class="btn btn-default" type="submit" name="downvote{{link.id}}" value="downvote">
+	{% endif %}
+	<a href="/link/{{ link.id }}">Comments</a>
+</form>
 {%endfor%}

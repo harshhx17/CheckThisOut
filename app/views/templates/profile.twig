@@ -3,26 +3,26 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <nav class="navbar navbar-inverse">
-<div class="nav nav-header navbar-brand">"Hello {{user['username']}}    Your Karma: {{user['karma']}}"</div>  <!-- Ignore HTMLLintBear -->
-<form method="post" class="navbar-nav" style="float: right;">
-	<input class="navbar-brand btn btn-default" type="submit" name="logout" value="Log Out">
-</form>
+	<div class="nav nav-header navbar-brand">"Hello {{user['username']}}    Your Karma: {{user['karma']}}"</div>  <!-- Ignore HTMLLintBear -->
+	<form method="post" class="navbar-nav" style="float: right;">
+		<input class="navbar-brand btn btn-default" type="submit" name="logout" value="Log Out">
+	</form>
 </nav>
 <nav class="navbar navbar-default">
 	<div class="navbar-header navbar-brand">POSTS</div>
-<ul class="nav navbar-nav">
-<li><a href="/posts/recent">Recent Posts</a></li>
-<li><a href="/posts/top">All Time Top</a></li>
-<li><a href="/posts/trending">Trending</a></li>
-</ul>
+	<ul class="nav navbar-nav">
+		<li><a href="/posts/recent">Recent Posts</a></li>
+		<li><a href="/posts/top">All Time Top</a></li>
+		<li><a href="/posts/trending">Trending</a></li>
+	</ul>
 </nav>
 <form method="post">
-<div class="container">
-	<h3>Share A link</h3>
-Title:    <input class="form-control" name="title" type="text"><br>
-URL:      <input class="form-control" type="text" name="url"><br>
-<input class="btn btn-default" type="submit" name="Share Link">
-</div>
+	<div class="container">
+		<h3>Share A link</h3>
+		Title:    <input class="form-control" name="title" type="text"><br>
+		URL:      <input class="form-control" type="text" name="url"><br>
+		<input class="btn btn-default" type="submit" name="Share Link">
+	</div>
 </form>
 <h3>My Posts</h3>
 {%for link in links%}
