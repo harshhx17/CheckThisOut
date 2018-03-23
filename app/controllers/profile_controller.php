@@ -56,6 +56,6 @@ class ProfileController
 		}
 		$user = \Model\UserModel::find($id);
 		echo \View\Loader::make()->render('templates\profile.twig',
-		array('links'=> $links,'user' => $user, 'comments' => $comments));
+			array('links'=> $links,'user' => $user, 'comments' => $comments));
 	}
 }
