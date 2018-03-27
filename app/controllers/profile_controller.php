@@ -28,7 +28,7 @@ class ProfileController
 			header('Location: login');
 		}
 		$user = \Model\UserModel::find($id);
-		if(isset($_POST['submit'])){
+		if(isset($_POST["share"])){
 			$title = $_POST['title'];
 			$url = $_POST['url'];
 			$username = $user['username'];
